@@ -1,0 +1,8 @@
+<%- include('header.ejs') -%>
+    <h1>Categories</h1>
+    <% categories.forEach(category => { %>
+        <a href="/api/categories/<%= category._id %>/products"><%= category.name %></a>
+        <p><%= category._id %></p>
+        <%}) %> 
+    
+        <%- include('footer.ejs') -%>

@@ -1,0 +1,35 @@
+<%- include('header.ejs') -%>
+    <!-- <a href="/api/categories/">Categories</a>
+       
+    <a href="/api/products/">Products</a>
+
+    <a href="/api/registration/">Registration</a>
+
+    <a href="/login/">Log in</a> -->
+     
+    <!-- <h1>Categories</h1> -->
+    <ul class="nav justify-content-center">
+        <% categories.forEach(category => { %>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/api/categories/<%= category._id %>/products"><%= category.name %></a>
+        </li>
+        <%}) %>
+      </ul>
+    <section class="products d-flex flex-row justify-content-evenly justify-content-center flex-wrap mt-5">    
+        <!-- <h1>Products</h1> -->
+        <% products.forEach(product => { %>       
+        <div class="card mb-5" style="width: 25rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a href="/api/products/<%= product._id %>"><%= product.title %></a></h5>
+                <p class="card-text">Number In Stock: <%= product.numberInStock %></p></p>
+                <p class="card-text">Price: <%= product.price %> $</p></p>
+                <a href="/api/products/<%= product._id %>" class="btn btn-primary">Read more</a>
+            </div>
+        </div>
+       <%}) %> 
+    </section>
+       <!-- JavaScript Bundle with Popper -->
+<%- include('footer.ejs') -%>
+</body>
+</html>

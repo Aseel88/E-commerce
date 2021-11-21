@@ -1,0 +1,25 @@
+<%- include('header.ejs') -%>
+     <div id="signup-box"> 
+        <form action="/" method="post">
+                
+                <h1>Sign up</h1>
+                
+                <input type="text" name="name" placeholder="name"  />
+                <input type="email" name="email" placeholder="E-mail" />
+                <input type="password" name="password" placeholder="Password" />
+                
+                <button type="submit">Sign me up</button> 
+            </div>
+        </form>  
+      <p> if You're allready registered login </p>
+    <!-- <div id="login-box"></div>
+        <form action="/api/auth" method="post">
+                    
+                <h1>Log in</h1>
+                <input type="email" name="email" placeholder="E-mail" />
+                <input type="password" name="password" placeholder="Password" />
+                
+                <button type="submit">Log me in</button> 
+            </div>
+        </form>   -->
+        <%- include('footer.ejs') -%>

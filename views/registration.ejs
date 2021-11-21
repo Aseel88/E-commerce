@@ -1,0 +1,36 @@
+<%- include('header.ejs') -%>
+<div class="d-flex  justify-content-center" style="padding: 5%;">
+  <form action="/api/users" style=" width: 30%; justify-content: center; align-items: center;" method="POST">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input type="email" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>  
+    <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Sign up</button>
+  </form>  
+  
+
+</div>   
+ <p class="d-flex  justify-content-center"> if You're allready registered head to<a href="/api/login">  Log in page</a> </p> 
+     <!-- <div id="signup-box"> 
+        <form action="/api/users" method="POST">
+                
+                <h1>Sign up</h1>
+                
+                <input type="text" id = "name" name="name" />
+                <input type="email" id = "email" name="email" />
+                <input type="password" id = "password" name="password" />
+                
+                <button type="submit">Sign me up</button> 
+            </div>
+        </form>   -->
+      
+<%- include('footer.ejs') -%>
