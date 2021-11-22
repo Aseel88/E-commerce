@@ -6,9 +6,6 @@ const Fawn = require('fawn');
 const express = require('express');
 const router = express.Router();
 
-
-// mongoose.connect('mongodb+srv://admin:A8806296581a@cluster0.jg8na.mongodb.net/myProject?retryWrites=true&w=majority');
-
 // Fawn.init(mongoose);
  Fawn.init("mongodb://localhost:27017/myProject");
 

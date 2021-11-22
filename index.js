@@ -9,6 +9,8 @@ const session = require('express-session')
 const { Category, categorySchema } = require('./models/category');
 const { Product } = require('./models/product');
 var bodyParser = require('body-parser');
+var dotenv = require('dotenv');
+dotenv.config();
 
 // const path = require('path');
 // const Fawn = require('fawn');
@@ -34,8 +36,8 @@ if(!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined. ');
   process.exit(1);
 }
-
-mongoose.connect('mongodb+srv://admin:A8806296581a@cluster0.jg8na.mongodb.net/myProject?retryWrites=true&w=majority')
+// MONGODB_URI
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.jg8na.mongodb.net/myProject?retryWrites=true&w=majority`)
 // mongoose.connect('mongodb://localhost/MyDatabase')
   .then(() => console.log('Database connection successful...'))
   .catch(err => console.error('Database connection error...', err));
