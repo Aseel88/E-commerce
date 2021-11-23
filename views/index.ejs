@@ -1,13 +1,5 @@
 <%- include('header.ejs') -%>
-    <!-- <a href="/api/categories/">Categories</a>
-       
-    <a href="/api/products/">Products</a>
-
-    <a href="/api/registration/">Registration</a>
-
-    <a href="/login/">Log in</a> -->
-     
-    <!-- <h1>Categories</h1> -->
+  
     <ul class="nav justify-content-center">
         <% categories.forEach(category => { %>
         <li class="nav-item">
@@ -16,7 +8,7 @@
         <%}) %>
       </ul>
     <section class="products d-flex flex-row justify-content-evenly justify-content-center flex-wrap mt-5">    
-        <!-- <h1>Products</h1> -->
+      
         <% products.forEach(product => { %>       
         <div class="card mb-5" style="width: 25rem;">
             <img src="/<%= product.imgUrl %>" class="card-img-top" alt="<%= product.imgDescription %>">
@@ -27,7 +19,7 @@
         </div>
        <%}) %> 
     </section>
-       <!-- JavaScript Bundle with Popper -->
+       
 <%- include('footer.ejs') -%>
 </body>
 </html>

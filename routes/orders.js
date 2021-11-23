@@ -6,8 +6,7 @@ const Fawn = require('fawn');
 const express = require('express');
 const router = express.Router();
 
-// Fawn.init(mongoose);
- Fawn.init("mongodb://localhost:27017/myProject");
+Fawn.init("mongodb://localhost:27017/myProject");
 
 router.get('/', async (req, res) => {
     const orders = await Order.find().sort('-dateOut');

@@ -1,7 +1,4 @@
 const config = require('config');
-// const jwt = require('jsonwebtoken');
-// const Joi = require('joi');
-// const passwordComplexity = require("joi-password-complexity");
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({

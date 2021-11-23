@@ -12,9 +12,7 @@ var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 dotenv.config();
 
-// const path = require('path');
-// const Fawn = require('fawn');
-// require('dotenv').config({ path: path.resolve(__dirname, './.env') });
+
 const categories = require('./routes/categories');
 const registration = require('./routes/registration');
 const customers = require('./routes/customers');
@@ -36,21 +34,16 @@ if(!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined. ');
   process.exit(1);
 }
-// MONGODB_URI
+
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.jg8na.mongodb.net/myProject?retryWrites=true&w=majority`)
-// mongoose.connect('mongodb://localhost/MyDatabase')
   .then(() => console.log('Database connection successful...'))
   .catch(err => console.error('Database connection error...', err));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// console.log(__dirname)
-// Static files
-// app.use(express.static('public'))
-app.use(express.static(__dirname + '/public'))
-// app.use('/img', express.static(__dirname + 'public/img'))
-// app.use('/js', express.static(__dirname + 'public/js'))
 
+// Static files
+app.use(express.static(__dirname + '/public'))
 
 // Views
 app.set('views', './views')
@@ -64,9 +57,9 @@ app.use(session({
   saveUninitialized: true ,
 }))
 
-
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.use('/api/categories', categories);
 app.use('/api/registration', registration);
@@ -80,16 +73,10 @@ app.use('/api/contact', contact);
 app.use('/api/login', login);
 app.use('/api/cart', cart);
 
-
 app.use(error);
 
 
-
-// app.get('/', (req, res)=>{
-//     return res.send('Hello World!');
-// })
-
-app.get('/', (req, res, isLoggedIn)=>{
+app.get('/', (req, res)=>{
   Category.find({}, function(err, categories) {
       Product.find({}, function(err, products){
           res.render('index', {            
@@ -100,15 +87,6 @@ app.get('/', (req, res, isLoggedIn)=>{
   }) 
 });
 
-
-
-
-
-
-
-
-
-// console.log(Fawn);
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
 

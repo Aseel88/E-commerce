@@ -9,8 +9,7 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
   try {
      const categories = await Category.find().sort('name')
-  // res.send(categories);
-    res.render('categories', {
+      res.render('categories', {
       categories: categories
     })
   }
@@ -20,7 +19,6 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', ensureAuthenticated, async (req, res) => {
-  // const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
   const category = new Category({ name: req.body.name});
@@ -30,8 +28,7 @@ router.post('/', ensureAuthenticated, async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  // const { error } = validate(req.body); 
-  if (error) return res.status(400).send(error.details[0].message);
+   if (error) return res.status(400).send(error.details[0].message);
 
   const category = await Category.findByIdAndUpdate(req.params.id, { name: req.body.name},{
     new: true
@@ -55,8 +52,6 @@ router.get('/:id', async (req, res) => {
    const products = await Product.find( { });
 
   if (!category) return res.status(404).send('The category with the given ID was not found.');
-
-  // res.send(category);
     res.render('category', {
       category: category,
       products : products 
@@ -64,15 +59,13 @@ router.get('/:id', async (req, res) => {
 });
 
 router.get('/:id/products', async (req, res) => {
-  console.log('Here')
+ 
   const products = await Product.find({"category._id": req.params.id});
   const category = await Category.findById({_id: req.params.id})
   console.log(products)
   console.log(category);
 
   if (!products) return res.status(404).send('No products under the given category was not found.');
-
-  // res.send(products);
     res.render('category', {            
       products: products,
       category: category

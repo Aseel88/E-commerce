@@ -4,8 +4,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req, res)=>{
-    // res.render('about', { text: 'About'});
+router.get('/', (req, res)=>{   
     Category.find({}, function(err, categories) {
       Product.find({}, function(err, products){
           res.render('about', {            

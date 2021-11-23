@@ -17,7 +17,6 @@ router.post('/', async (req, res) => {
     }
 })
 
-
 router.get('/', async (req, res) => {
     try {
         Category.find({}, function (err, categories) {

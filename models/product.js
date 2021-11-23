@@ -48,8 +48,6 @@ function validateProduct(product) {
         numberInStock: Joi.number().min(0).required(),
         dailyOrderRate: Joi.number().min(0).required(),
         price: Joi.number().min(0).required()
-        // imgUrl: Joi.require(),
-        // imgDescription:Joi.string().require(),
     };
 
     return Joi.validate(product, schema);

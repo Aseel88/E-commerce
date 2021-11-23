@@ -76,8 +76,7 @@ router.get('/:id', async (req, res) => {
 
   if (!product) return res.status(404).send('The product with the given ID was not found.');
 
-  // res.send(product);
-      Category.findOne({_id: req.params._id}, function(err, category) {
+   Category.findOne({_id: req.params._id}, function(err, category) {
         res.render('product', {
           product: product,
           categorySchema :category
