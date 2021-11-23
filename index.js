@@ -47,7 +47,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // console.log(__dirname)
 // Static files
 // app.use(express.static('public'))
-app.use(express.static(__dirname + 'public'))
+app.use(express.static(__dirname + '/public'))
 // app.use('/img', express.static(__dirname + 'public/img'))
 // app.use('/js', express.static(__dirname + 'public/js'))
 
