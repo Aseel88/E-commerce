@@ -65,10 +65,10 @@
                       
                     </ul>             
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
+            <form class="d-flex" method="post" action="/api/products/search" >
+              <input class="form-control me-2" type="search" placeholder="Search" id="search" name="query" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit" >Search</button>
+          </form>
           </div>
         </div>
       </nav>
