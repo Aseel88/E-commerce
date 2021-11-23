@@ -89,7 +89,7 @@ app.use(error);
 //     return res.send('Hello World!');
 // })
 
-app.get('/', (req, res)=>{
+app.get('/', (req, res, isLoggedIn)=>{
   Category.find({}, function(err, categories) {
       Product.find({}, function(err, products){
           res.render('index', {            
