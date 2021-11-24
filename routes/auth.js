@@ -9,12 +9,12 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-router.post('/',(req,res, next)=>{
-  passport.authenticate('local',{
-      successRedirect : '/',
-      failureRedirect: '/',
-  })(req,res,next)
-})
+router.post('/', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+  })(req, res, next);
+});
 
-  
+
 module.exports = router;

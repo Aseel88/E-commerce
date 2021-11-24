@@ -1,5 +1,6 @@
 const error = require('./middleware/error');
 const config = require('config');
+const path = require('path');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
@@ -11,6 +12,10 @@ const { Product } = require('./models/product');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 dotenv.config();
+const express = require('express');
+const { required } = require('joi/lib/types/lazy');
+require('./config/passport')(passport)
+const app = express();
 
 
 const categories = require('./routes/categories');
@@ -23,14 +28,16 @@ const auth = require('./routes/auth');
 const about = require('./routes/about');
 const contact = require('./routes/contact');
 const login = require('./routes/login');
-const cart=require('./routes/cart');
+const logout = require('./routes/logout');
+const cart = require('./routes/cart');
 
-const express = require('express');
-const { required } = require('joi/lib/types/lazy');
-require('./config/passport')(passport)
-const app = express();
 
-if(!config.get('jwtPrivateKey')) {
+// Static files
+app.use(express.static(path.join(__dirname, '/public')));
+app.use("/assets", express.static(__dirname + "/assets"));
+// app.use('/assets', express.static(path.join(__dirname,'/assets')))
+
+if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined. ');
   process.exit(1);
 }
@@ -42,8 +49,9 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONG
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// Static files
-app.use(express.static(__dirname + '/public'))
+
+
+// app.use(express.static(__dirname + '/public'))
 
 // Views
 app.set('views', './views')
@@ -53,8 +61,8 @@ app.set('view engine', 'ejs')
 app.use(express.json());
 app.use(session({
   secret: "secret",
-  resave: false ,
-  saveUninitialized: true ,
+  resave: false,
+  saveUninitialized: true,
 }))
 
 app.use(passport.initialize());
@@ -71,23 +79,25 @@ app.use('/api/auth', auth);
 app.use('/api/about', about);
 app.use('/api/contact', contact);
 app.use('/api/login', login);
+app.use('/api/logout', logout);
 app.use('/api/cart', cart);
 
 app.use(error);
 
 
-app.get('/', (req, res)=>{
-  Category.find({}, function(err, categories) {
-      Product.find({}, function(err, products){
-          res.render('index', {            
-              products: products,
-              categories: categories 
-          });
-      })       
-  }) 
+app.get('/', (req, res) => {
+  Category.find({}, function (err, categories) {
+    Product.find({}, function (err, products) {
+      res.render('index', {
+        products: products,
+        categories: categories,
+        user: req.session.passport == null ? null : req.session.passport.user
+      });
+    });
+  });
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+app.listen(port, () => console.log(`Listening on http:localhost:${port}...`));
 
 module.exports = app;

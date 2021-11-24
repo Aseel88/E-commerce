@@ -9,10 +9,11 @@ router.get('/', (req, res) => {
         Product.find({}, function (err, products) {
             res.render('contact', {
                 products: products,
-                categories: categories
+                categories: categories,
+                user: req.session.passport == null ? null : req.session.passport.user
             });
-        })
-    })
+        });
+    });
 });
 
 module.exports = router;

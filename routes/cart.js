@@ -8,12 +8,12 @@ router.post('/', async (req, res) => {
     let cart = await Cart.find({ customer: req.session.user.id })
 
     if (cart) {
-        let { productId, quantity, price } = req.body
-        let new_item = { productId, quantity, price }
-        cart.items.push(new_item)
+        let { productId, quantity, price } = req.body;
+        let new_item = { productId, quantity, price };
+        cart.items.push(new_item);
 
-        let data = await cart.save()
-        res.send({ data })
+        let data = await cart.save();
+        res.send({ data });
     }
 })
 
@@ -24,7 +24,8 @@ router.get('/', async (req, res) => {
                 res.render('basket', {
                     products: products,
                     categories: categories,
-                    s_products:JSON.stringify(products)
+                    s_products: JSON.stringify(products),
+                    user: req.session.passport == null ? null : req.session.passport.user
                 });
             });
         });

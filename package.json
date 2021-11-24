@@ -8,7 +8,7 @@
     "dev": "nodemon -L index.js"
   },
   "keywords": [],
-  "author": "Aseel Mohamad",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
