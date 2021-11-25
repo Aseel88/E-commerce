@@ -17,3 +17,14 @@ function search(){
     let cart_items = JSON.parse(cart)
     $('#count').text(cart_items.length)
   });
+
+  // The search button
+  document.getElementById("searchBtn").addEventListener("click", function() {
+    this.style.backgroundColor = "white";
+    this.style.borderStyle = "solid";
+    this.style.borderColor = "black";
+    this.style["boxShadow"] = "none";
+    // const element = document.getElementById("searchBtn");
+    // element.classList.add("Click");
+              // element.classList.remove("btn btn-outline-success");
+  }); 

@@ -1,6 +1,6 @@
 <%- include('header.ejs') -%>
 
-    <h1 style="text-align: center;"><%= category.name %></h1>
+    <h1 style="text-align: center; margin:1rem;"><%= category.name %></h1>
     <% products.forEach(product => { %>
     
     <div class="d-flex justify-content-center">
@@ -9,7 +9,7 @@
         <div class="col-md-4">
           <img src="/<%= product.imgUrl %>" class="img-fluid rounded-start" alt="<%= product.imgDescription %>">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 d-flex flex-column align-items-center justify-content-center;">
           <div class="card-body">
             <h5 class="card-title"><%= product.title %></h5>
             <p class="card-text">Category: <%= product.category.name %></p>
@@ -17,8 +17,8 @@
             <p class="card-text">Daily Order Rate: <%= product.dailyOrderRate %></p>
             <p class="card-text">Price: <%= product.price %> $</p>
 
-            <div class="btn-group d-flex justify-content-center"  style="width:10%;">
-              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="btn-group d-flex justify-content-center" >
+              <button class="btn btn-secondary btn-sm dropdown-toggle" style="max-width:35%;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Size
               </button>
               <ul class="dropdown-menu">
@@ -27,16 +27,17 @@
                 <li> 3</li>
                 <li> 4</li>
               </ul>
-            </div>
-           
+              
+            </div>           
+          </div>
+          <div>
+              <button type="submit" class="btn btn-primary" onclick="addToCart('<%= product.id %>')" >Add to basket</button>
           </div>
         </div>
       </div>
     </div>
 </div>
-<div>
-  <button type="submit" class="btn btn-primary" onclick="addToCart('<%= product.id %>')" >Add to basket</button>
-</div>
+
 
 
     

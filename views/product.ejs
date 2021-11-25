@@ -26,11 +26,12 @@
               </div>
               
             </div>
+            <div>
+      <button  type="submit" class="btn btn-primary" onclick="addToCart('<%= product.id %>')" >Add to basket</button>
+    </div> 
           </div>
         </div>
       </div>
 
-    <div>
-      <button style="width: 10% ;margin-left: 45%;" type="submit" class="btn btn-primary" onclick="addToCart('<%= product.id %>')" >Add to basket</button>
-    </div>    
+       
     <%- include('footer.ejs') -%>
